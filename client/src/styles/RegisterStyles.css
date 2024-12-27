@@ -4,9 +4,18 @@
   align-items: center;
   height: 100vh;
   border: 1px solid black;
+  background-color: #24ceec;
 }
 
 .register-form{
     border: 1px solid gray;
     padding: 30px;
+}
+
+/* new  */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /* background-color: #fbcfe8; */
 }

@@ -1,6 +1,7 @@
 const userModel = require("../models/userModels");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+
 //register callback
 const registerController = async(req,res) => {
     try{
@@ -38,7 +39,14 @@ const loginController = async (req,res) => {
             return res.status(200).send({message:`Invalid Email or Password`,success:false});
         }
         const token = jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:"1d"});     
-        res.status(200).send({message:`Login Success`,success:true,token,email:user.email,name:user.name});
+        res.status(200).send({
+            message:`Login Success`,
+            success:true,
+            token,
+            email:user.email,
+            name:user.name,
+            role:user.role
+        });
     } catch(error) {
         console.log(error);
         res.status(500).send({
@@ -54,7 +62,15 @@ const authController = async(req,res) => {
         if(!user){
             return res.status(200).send({message:"User not found",success:false});
         }else{
-            res.status(200).send({message:"Auth Success",success:true,data:{name:user.name,email:user.email}});
+            res.status(200).send({
+                message:"Auth Success",
+                success:true,
+                data:{
+                    name:user.name,
+                    email:user.email,
+                    role:user.role
+                }
+            });
         }
     } catch (error) {
         console.log(error);

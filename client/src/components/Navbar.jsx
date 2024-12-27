@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const Navbar = ({ userName, onLogout }) => {
+const Navbar = ({ userName, onLogout, userRole }) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const isAdmin = userRole === 'admin';
 
   return (
     <nav style={styles.navbar}>
@@ -19,7 +20,7 @@ const Navbar = ({ userName, onLogout }) => {
         
         <div style={styles.profileSection}>
           <Link to="/profile" style={styles.link}>
-            {userName || 'User'}
+            {userName || 'User'} {isAdmin && '(Admin)'}
           </Link>
           <div 
             style={styles.dropdownArrow}
@@ -32,6 +33,16 @@ const Navbar = ({ userName, onLogout }) => {
             <div style={styles.dropdown}>
               <Link to="/settings" style={styles.dropdownItem}>Settings</Link>
               <Link to="/favorites" style={styles.dropdownItem}>Favorites</Link>
+              {isAdmin && (
+                <>
+                  <Link to="/admin/event-approval" style={styles.dropdownItem}>
+                    Event Approval
+                  </Link>
+                  <Link to="/admin/blog-approval" style={styles.dropdownItem}>
+                    Blog Approval
+                  </Link>
+                </>
+              )}
               <div 
                 style={styles.dropdownItem}
                 onClick={onLogout}

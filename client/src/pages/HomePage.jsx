@@ -43,7 +43,11 @@ const HomePage = () => {
 
   return (
     <div style={styles.container}>
-      <Navbar userName={userData?.name} onLogout={handleLogout} />
+      <Navbar 
+        userName={userData?.name} 
+        onLogout={handleLogout}
+        userRole={userData?.role}
+      />
       
       <main style={styles.main}>
         <div style={styles.welcomeSection}>
