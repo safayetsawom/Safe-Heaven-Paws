@@ -40,7 +40,7 @@ const loginController = async (req,res) => {
         }
         const token = jwt.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:"1d"});     
         res.status(200).send({
-            message:`Login Success`,
+            message:`Login Successfully`,
             success:true,
             token,
             email:user.email,

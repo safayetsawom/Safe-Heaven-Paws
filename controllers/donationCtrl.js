@@ -7,13 +7,27 @@ let donationBalance = 2000;
 const submitRequest = async (req, res) => {
     try {
         const { name, reason, amountNeeded, contact } = req.body;
+        
+        // Validate required fields
+        if (!name || !reason || !amountNeeded || !contact) {
+            return res.status(400).send({
+                success: false,
+                message: "All fields are required"
+            });
+        }
+
+        // Get userId from auth middleware
+        const userId = req.body.userId;
+
         const newRequest = new donationRequestModel({
             name,
             reason,
             amountNeeded,
             contact,
-            userId: req.body.userId
+            userId,
+            status: 'pending' // Add default status
         });
+
         await newRequest.save();
         res.status(200).send({
             success: true,
@@ -21,11 +35,11 @@ const submitRequest = async (req, res) => {
             request: newRequest
         });
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).send({
             success: false,
             message: "Error in submitting request",
-            error
+            error: error.message
         });
     }
 };

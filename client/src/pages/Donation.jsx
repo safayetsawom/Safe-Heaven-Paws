@@ -107,13 +107,13 @@ const Donation = () => {
 
   const handleRequest = async () => {
     try {
-      if (!requestDetails.name || !requestDetails.reason || !requestDetails.amountNeeded || !requestDetails.contact) {
-        return message.error('Please fill all request details');
-      }
+      const requestData = {
+        ...requestDetails
+      };
 
       const res = await axios.post(
         "http://localhost:8080/api/v1/donation/request",
-        requestDetails,
+        requestData,
         {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -128,8 +128,8 @@ const Donation = () => {
         getUserRequests();
       }
     } catch (error) {
-      console.log(error);
-      message.error('Error submitting request');
+      console.error(error);
+      message.error(error.response?.data?.message || 'Error submitting request');
     }
   };
 
