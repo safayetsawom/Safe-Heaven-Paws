@@ -52,7 +52,7 @@ const HomePage = () => {
       <main style={styles.main}>
         <div style={styles.welcomeSection}>
           <h1 style={styles.welcomeText}>
-            Welcome {userData?.name} to the SAFE HEAVEN PAWS
+            Welcome {userData?.name} to the SAFE HEAVEN PAWS 😺
           </h1>
         </div>
       </main>

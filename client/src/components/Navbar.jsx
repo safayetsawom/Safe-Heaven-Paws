@@ -8,7 +8,7 @@ const Navbar = ({ userName, onLogout, userRole }) => {
   return (
     <nav style={styles.navbar}>
       <div style={styles.logo}>
-        <Link to="/" style={styles.logoText}>Safe Heaven Paw</Link>
+        <Link to="/" style={styles.logoText}>Safe Heaven Paws 🐾</Link>
       </div>
       
       <div style={styles.links}>
@@ -18,6 +18,7 @@ const Navbar = ({ userName, onLogout, userRole }) => {
         <Link to="/lost-found" style={styles.link}>Lost&Found</Link>
         <Link to="/blog" style={styles.link}>Blog</Link>
         <Link to="/donation" style={styles.link}>Donation</Link>
+        <Link to="/profile" style={styles.link}>Profile</Link>
         
         <div style={styles.profileSection}>
           <Link to="/profile" style={styles.link}>
